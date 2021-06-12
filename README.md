@@ -1,5 +1,5 @@
 # GO API - TEST
-==============================================
+---
 
 This is a test project. Things can evolve rapidly without any notice, so don't build on top of this repository at the moment.
 
@@ -47,3 +47,47 @@ Same as above, but managing the output handlers. One could imagine a utility fun
 ## Additional notes
 
 For handlers, the `init()` and `terminate()` methods are here to be overriden and provide mechanisms where some codes (e.g. handshake with a server) are to be executed when the input handler comes to live / die.
+
+## Code example
+
+```
+const InputHandlerManager = require("./InputHandlers/InputHandlerManager");
+const OutputHandlerManager = require("./OutputHandlers/OutputHandlerManager");
+const DataModelsEnum = require('./DataModels/DataModelsEnum');
+
+// Initiate the managers for input and output handlers
+const ihManager = new InputHandlerManager(true);
+const ohManager = new OutputHandlerManager(true);
+
+// Request a GPAD Input Handler
+var genericInHandler = ihManager.getInputHandler("GPAD");
+genericInHandler.showInfo();
+
+// retrieve a term from input handler GPAD
+var term = genericInHandler.read(DataModelsEnum.Term, "GO:XXXX");
+
+// retrieve a gene product from input handler GPAD
+var gp = genericInHandler.read(DataModelsEnum.GeneProduct, "UniProtKB:XXX");
+
+// modify the term data
+term.setObsoleted(true);
+term.setDefinition("this is my new definition");
+
+// modify the gene product data
+gp.setSynonyms(["tp53", "p53"]);
+
+// write the data to the backend with output handler(s)
+var genericOutHandler = ohManager.getOutputHandler("SPARQL");
+genericOutHandler.write(term);
+genericOutHandler.write(gp);
+
+// note you can synchronize the update of those data objects (term & gp here) by requesting multiple output handlers and writing to them
+var genericOutHandler2 = ohManager.getOutputHandler("GOLR");
+var genericOutHandler3 = ohManager.getOutputHandler("OWL");
+
+genericOutHandler2.write(term);
+genericOutHandler2.write(gp);
+genericOutHandler3.write(term);
+genericOutHandler3.write(gp);
+
+```
