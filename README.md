@@ -50,7 +50,7 @@ For handlers, the `init()` and `terminate()` methods are here to be overriden an
 
 ## Code example
 
-```
+```javascript
 const InputHandlerManager = require("./InputHandlers/InputHandlerManager");
 const OutputHandlerManager = require("./OutputHandlers/OutputHandlerManager");
 const DataModelsEnum = require('./DataModels/DataModelsEnum');
