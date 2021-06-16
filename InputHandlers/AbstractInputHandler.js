@@ -20,14 +20,14 @@ class AbstractInputHandler {
      * Systematically call when using this InputHandler before any other operation
      */
     init(params) { 
-        console.log(this.source + " Input Handler initialized");
+        console.log(this.source + " Input Handler initialized with (" , params , ")");
     }
 
     /**
      * Systematically call after all operations have been performed
      */
     terminate(params) {
-        console.log(this.source + " Input Handler terminated");
+        console.log(this.source + " Input Handler terminated with (" , params , ")");
     }
 
     /**
