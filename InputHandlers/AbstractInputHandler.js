@@ -20,11 +20,18 @@ class AbstractInputHandler {
      * Systematically call when using this InputHandler before any other operation
      */
     init(params) { 
-        throw new Error("Not implemented");
+        console.log(this.source + " Input Handler initialized");
     }
 
     /**
-     * Method to call to retrieve the data from the source this input handler was coded for
+     * Systematically call after all operations have been performed
+     */
+    terminate(params) {
+        console.log(this.source + " Input Handler terminated");
+    }
+
+    /**
+     * Must override this method to read the data from the source specific to that handler
      * @param {*} type : resource type
      * @param {*} id : resource id
      */
@@ -32,12 +39,6 @@ class AbstractInputHandler {
         throw new Error("Not implemented");
     }
 
-    /**
-     * Systematically call after all operations have been performed
-     */
-    terminate(params) {
-        throw new Error("Not implemented");
-    }
 
 }
 

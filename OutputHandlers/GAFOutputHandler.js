@@ -7,23 +7,20 @@ class GAFOutputHandler extends AbstractOutputHandler {
         super("GAF", autoInit, params);
     }
 
-    init() {
-        console.log(this.target + " Output Handler initialized");
-    }
-
-    terminate(params) {
-        console.log(this.target + " Output Handler terminated");
-    }
-
     write(item) {
+        if(!item.wasModified) {
+            console.log("WARNING: the item has not been modified");
+            return false;
+        }
+
+        console.log("Writing " + item.toString() + " to <" + this.target + ">");
+
         switch(item.type) {
 
             case DataModelsEnum.Term:
-                console.log("Writing " + item.toString() + " to <" + this.target + ">");
                 break;
 
             case DataModelsEnum.GeneProduct:
-                console.log("Writing " + item.toString() + " to <" + this.target + ">");
                 break;
     
         }

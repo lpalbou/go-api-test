@@ -20,30 +20,25 @@ class AbstractOutputHandler {
 
     /**
      * Systematically call when using this OutputHandler before any other operation
-     * Can be used for handshake / auth
+     * You can override this method to init your output handler (e.g. create connexion)
      */
     init(params) { 
-        throw new Error("Not implemented");
-    }
-
-    /**
-     * Method to call to write/send the data to the source this specific handler was coded for
-     * @param {*} type : resource type
-     * @param {*} id : resource id
-     */
-    write(item) { 
-        if(!item.wasModified) {
-            console.log("WARNING: " + item.toString() + " was not modified, nothing to save");
-            return false;
-        }
-        console.log("Writing <" + item.type + "> with ID <" + item.id + "> to " + this.target);
-        return true;
+        console.log(this.target + " Output Handler initialized with (" , params , ")");
     }
 
     /**
      * Systematically call after all operations have been performed
+     * You can override this method to terminate your output handler (e.g. close connexion)
      */
-    terminate(params) {
+    terminate(params) { 
+        console.log(this.target + " Output Handler terminated with (" , params , ")");
+    }
+
+    /**
+     * Must override this method to write/send the data to the source specific to that handler
+     * @param {*} item : entity to be written (e.g. a term, gene product, activity, reference, etc)
+     */
+    write(item) { 
         throw new Error("Not implemented");
     }
 

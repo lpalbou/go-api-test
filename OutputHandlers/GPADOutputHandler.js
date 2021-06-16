@@ -7,23 +7,28 @@ class GPADOutputHandler extends AbstractOutputHandler {
         super("GPAD", autoInit, params);
     }
 
-    init() {
-        console.log(this.target + " Output Handler initialized");
+    init(params) {
+        console.log("my custom INIT for ", this.target);
     }
 
     terminate(params) {
-        console.log(this.target + " Output Handler terminated");
+        console.log("my custom TERMINATE for ", this.target);
     }
 
     write(item) {
+        if(!item.wasModified) {
+            console.log("WARNING: the item has not been modified");
+            return false;
+        }
+
+        console.log("Writing " + item.toString() + " to <" + this.target + ">");
+
         switch(item.type) {
 
             case DataModelsEnum.Term:
-                console.log("Writing " + item.toString() + " to <" + this.target + ">");
                 break;
 
             case DataModelsEnum.GeneProduct:
-                console.log("Writing " + item.toString() + " to <" + this.target + ">");
                 break;
     
         }

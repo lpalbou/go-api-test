@@ -7,14 +7,6 @@ class GAFInputHandler extends AbstractInputHandler {
         super("GAF", autoInit, params);
     }
 
-    init() {
-        console.log(this.source + " Input Handler initialized");
-    }
-
-    terminate(params) {
-        console.log(this.source + " Input Handler terminated");
-    }
-
     read(type, id) {
         switch(type) {
 
