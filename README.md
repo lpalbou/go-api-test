@@ -46,7 +46,8 @@ Same as above, but managing the output handlers. One could imagine a utility fun
 
 ## Additional notes
 
-For handlers, the `init()` and `terminate()` methods are here to be overriden and provide mechanisms where some codes (e.g. handshake with a server) are to be executed when the input handler comes to live / die.
+* For handlers, the `init()` and `terminate()` methods are here to be overriden and provide mechanisms where some codes (e.g. handshake with a server) are to be executed when the input handler comes to live / die.
+* If we go with that solution, we may want it in TypeScript for better error checking & documentation
 
 ## Code example
 
