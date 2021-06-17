@@ -3,10 +3,10 @@ const AbstractInputHandler = require("./AbstractInputHandler");
 const Term = require("../DataModels/Term");
 const GeneProduct = require("../DataModels/GeneProduct");
 
-class GolrInputHandler extends AbstractInputHandler {
+class MinervaInputHandler extends AbstractInputHandler {
 
     constructor(autoInit, params) {
-        super("GOLR", autoInit, params);
+        super("Minerva", autoInit, params);
     }
 
     read(type, id) {
@@ -26,8 +26,7 @@ class GolrInputHandler extends AbstractInputHandler {
         return { "error" : "Unknown error while reading (" + type + ":" + id + ")" };
     }
 
-
 }
 
 
-module.exports = GolrInputHandler;
+module.exports = MinervaInputHandler;

@@ -1,5 +1,7 @@
 const DataModelsEnum = require("../DataModels/DataModelsEnum");
 const AbstractInputHandler = require("./AbstractInputHandler");
+const Term = require("../DataModels/Term");
+const GeneProduct = require("../DataModels/GeneProduct");
 
 class OWLInputHandler extends AbstractInputHandler {
 

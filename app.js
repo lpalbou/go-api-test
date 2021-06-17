@@ -18,7 +18,7 @@ console.log("\nAll handlers have been initialized\n\n");
 //      STEP 1 : get TERM independent of the source
 // =======================================================
 
-var genericInHandler = ihManager.getInputHandler("GPAD");
+var genericInHandler = ihManager.getInputHandler("SPARQL");
 genericInHandler.showInfo();
 
 var term = genericInHandler.read(DataModelsEnum.Term, "GO:XXXX");
@@ -32,19 +32,26 @@ var gp = genericInHandler.read(DataModelsEnum.GeneProduct, "UniProtKB:XXX");
 term.setObsoleted(true);
 term.setDefinition("this is my new definition");
 
-// gp.setSynonyms(["tp53", "p53"]);
+gp.setSynonyms(["tp53", "p53"]);
 
 
 // =======================================================
 //          STEP 3: write the CHANGES (if any)
 // =======================================================
 
-var genericOutHandler = ohManager.getOutputHandler("GPAD");
+var genericOutHandler = ohManager.getOutputHandler("GAF");
 genericOutHandler.showInfo();
-
 genericOutHandler.write(term);
 genericOutHandler.write(gp);
 
+// Example of how to sync the same data update on multiple endpoints
+var genericOutHandler2 = ohManager.getOutputHandler("GPAD");
+genericOutHandler2.write(term);
+genericOutHandler2.write(gp);
+
+var genericOutHandler3 = ohManager.getOutputHandler("OWL");
+genericOutHandler3.write(term);
+genericOutHandler3.write(gp);
 
 
 

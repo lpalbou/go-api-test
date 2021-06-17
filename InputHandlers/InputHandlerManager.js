@@ -7,6 +7,7 @@ const GPADInputHandler = require('./GPADInputHandler');
 const SPARQLInputHandler = require('./SPARQLInputHandler');
 const OWLInputHandler = require('./OWLInputHandler');
 const TTLInputHandler = require('./TTLInputHandler');
+const MinervaInputHandler = require('./MinervaInputHandler');
 
 class InputHandlerManager {
 
@@ -19,6 +20,7 @@ class InputHandlerManager {
         const sparqlIH = new SPARQLInputHandler(autoInit, params);
         const owlIH = new OWLInputHandler(autoInit, params);
         const ttlIH = new TTLInputHandler(autoInit, params);
+        const minIH = new MinervaInputHandler(autoInit, params);
 
         this.handlers.set(golrIH.getSource(), golrIH);
         this.handlers.set(gpadIH.getSource(), gpadIH);
@@ -26,6 +28,7 @@ class InputHandlerManager {
         this.handlers.set(sparqlIH.getSource(), sparqlIH);
         this.handlers.set(owlIH.getSource(), owlIH);
         this.handlers.set(ttlIH.getSource(), ttlIH);
+        this.handlers.set(minIH.getSource(), minIH);
     }
 
     getInputHandler(source) {

@@ -7,6 +7,7 @@ const GPADOutputHandler = require('./GPADOutputHandler');
 const SPARQLOutputHandler = require('./SPARQLOutputHandler');
 const OWLOutputHandler = require('./OWLOutputHandler');
 const TTLOutputHandler = require('./TTLOutputHandler');
+const MinervaOutputHandler = require('./MinervaOutputHandler');
 
 class OutputHandlerManager {
 
@@ -19,6 +20,7 @@ class OutputHandlerManager {
         const sparqlOH = new SPARQLOutputHandler(autoInit, params);
         const owlOH = new OWLOutputHandler(autoInit, params);
         const ttlOH = new TTLOutputHandler(autoInit, params);
+        const minOH = new MinervaOutputHandler(autoInit, params);
 
         this.handlers.set(golrOH.getTarget(), golrOH);
         this.handlers.set(gpadOH.getTarget(), gpadOH);
@@ -26,6 +28,7 @@ class OutputHandlerManager {
         this.handlers.set(sparqlOH.getTarget(), sparqlOH);
         this.handlers.set(owlOH.getTarget(), owlOH);
         this.handlers.set(ttlOH.getTarget(), ttlOH);
+        this.handlers.set(minOH.getTarget(), minOH);
     }
 
     getOutputHandler(source) {
